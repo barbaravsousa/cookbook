@@ -1,3 +1,5 @@
+package domain;
+
 public class Recipe {
     private String title;
     private MealType mealType;
