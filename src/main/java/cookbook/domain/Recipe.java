@@ -1,4 +1,4 @@
-package domain;
+package cookbook.domain;
 
 public class Recipe {
     private String title;
