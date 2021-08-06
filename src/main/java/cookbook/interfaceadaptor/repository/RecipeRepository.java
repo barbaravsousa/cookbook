@@ -1,4 +1,8 @@
 package cookbook.interfaceadaptor.repository;
 
-public class RecipeRepository {
+import cookbook.applicationservice.irepository.IRecipeRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class RecipeRepository implements IRecipeRepository {
 }

@@ -1,6 +1,10 @@
 package cookbook.domain;
 
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class Ingredient {
     private String name;
-    private int amount;
+    private MeasureUnity measureUnity;
 }
