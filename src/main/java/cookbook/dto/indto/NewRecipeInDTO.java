@@ -11,7 +11,6 @@ public class NewRecipeInDTO {
     private String mealType;
     private String numberOfPerson;
     private String difficultyLevel;
-   // private String ingredient;
-    //private List<String> ingredientsList;
+    private List<String> ingredientsList;
     private List<String> preparationStepsList;
 }

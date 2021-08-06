@@ -13,12 +13,10 @@ public class NewRecipeDTOMapper {
         String mealType = inDTO.getMealType();
         String numberOfPerson = inDTO.getNumberOfPerson();
         String difficultyLevel = inDTO.getDifficultyLevel();
-        //List<String> ingredientsList = inDTO.getIngredientsList();
+        List<String> ingredientsList = inDTO.getIngredientsList();
         List<String> preparationStepsList = inDTO.getPreparationStepsList();
 
-        return new NewRecipeDTO(title,mealType,numberOfPerson,difficultyLevel,preparationStepsList);
-
-
+        return new NewRecipeDTO(title,mealType,numberOfPerson,difficultyLevel,ingredientsList,preparationStepsList);
 
     }
 }

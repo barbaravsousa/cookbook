@@ -10,7 +10,7 @@ public class Recipe {
     private MealType mealType;
     private int numberOfPerson;
     private DifficultyLevel difficultyLevel;
-    //private List<Ingredient> ingredientList;
+    private List<Ingredient> ingredientList;
     private List<String> preparationStepsList;
 
 }
