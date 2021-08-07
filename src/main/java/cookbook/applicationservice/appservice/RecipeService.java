@@ -4,6 +4,7 @@ import cookbook.applicationservice.irepository.IRecipeRepository;
 import cookbook.domain.*;
 import cookbook.dto.outdto.NewRecipeOutDTO;
 import cookbook.dto.toservicedto.NewRecipeDTO;
+import cookbook.exception.InvalidRecipeTitleException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,8 @@ public class RecipeService implements IRecipeService {
      * @param newRecipe
      * @return
      */
-    public NewRecipeOutDTO createNewRecipe(NewRecipeDTO newRecipe) {
-        String title = newRecipe.getTitle();
+    public NewRecipeOutDTO createNewRecipe(NewRecipeDTO newRecipe) throws InvalidRecipeTitleException {
+        RecipeTitle title = new RecipeTitle(newRecipe.getTitle());
         MealType mealType = MealType.valueOf(newRecipe.getMealType());
         int numberOfPerson = Integer.parseInt(newRecipe.getNumberOfPerson());
         DifficultyLevel difficultyLevel = DifficultyLevel.valueOf(newRecipe.getDifficultyLevel());
@@ -39,7 +40,7 @@ public class RecipeService implements IRecipeService {
 
         //É preciso guardar na BASE DE DADOS
 
-        return new NewRecipeOutDTO(recipe.getTitle());
+        return new NewRecipeOutDTO(recipe.getTitle().toString());
     }
 
     /**

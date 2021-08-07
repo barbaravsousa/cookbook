@@ -5,6 +5,7 @@ import cookbook.dto.indto.NewRecipeInDTO;
 import cookbook.dto.outdto.NewRecipeOutDTO;
 import cookbook.dto.toservicedto.NewRecipeDTO;
 import cookbook.dto.toservicedto.NewRecipeDTOMapper;
+import cookbook.exception.InvalidRecipeTitleException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,15 @@ public class AddNewRecipeController {
     private final IRecipeService recipeService;
 
     @PostMapping("/recipes")
-    public ResponseEntity<Object> addNewRecipe(@RequestBody NewRecipeInDTO info) {
-        NewRecipeDTO newRecipeDTO = NewRecipeDTOMapper.toDTO(info);
-        NewRecipeOutDTO newRecipe = this.recipeService.createNewRecipe(newRecipeDTO);
-        return new ResponseEntity<>(newRecipe, HttpStatus.CREATED);
+    public ResponseEntity<Object> addNewRecipe(@RequestBody NewRecipeInDTO info) throws InvalidRecipeTitleException {
+        try {
+            NewRecipeDTO newRecipeDTO = NewRecipeDTOMapper.toDTO(info);
+            NewRecipeOutDTO newRecipe = this.recipeService.createNewRecipe(newRecipeDTO);
+            return new ResponseEntity<>(newRecipe, HttpStatus.CREATED);
+        }catch(InvalidRecipeTitleException exception){
+            String errorMessage = exception.getMessage();
+            return new ResponseEntity<>(errorMessage,HttpStatus.BAD_REQUEST);
+        }
 
     }
 

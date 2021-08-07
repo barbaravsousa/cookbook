@@ -8,7 +8,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Recipe {
     @Getter
-    private String title;
+    private RecipeTitle title;
     private MealType mealType;
     private int numberOfPerson;
     private DifficultyLevel difficultyLevel;
