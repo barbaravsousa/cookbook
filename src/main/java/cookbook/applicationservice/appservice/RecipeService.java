@@ -4,7 +4,7 @@ import cookbook.applicationservice.irepository.IRecipeRepository;
 import cookbook.domain.*;
 import cookbook.dto.outdto.NewRecipeOutDTO;
 import cookbook.dto.toservicedto.NewRecipeDTO;
-import cookbook.exception.InvalidRecipeTitleException;
+import cookbook.exception.InvalidNameException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class RecipeService implements IRecipeService {
      * @param newRecipe
      * @return
      */
-    public NewRecipeOutDTO createNewRecipe(NewRecipeDTO newRecipe) throws InvalidRecipeTitleException {
+    public NewRecipeOutDTO createNewRecipe(NewRecipeDTO newRecipe) throws InvalidNameException {
         RecipeTitle title = new RecipeTitle(newRecipe.getTitle());
         MealType mealType = MealType.valueOf(newRecipe.getMealType());
         int numberOfPerson = Integer.parseInt(newRecipe.getNumberOfPerson());
@@ -47,7 +47,7 @@ public class RecipeService implements IRecipeService {
      * @param ingredients
      * @return
      */
-    private List<Ingredient> splitListOfIngredients(List<String> ingredients) {
+    private List<Ingredient> splitListOfIngredients(List<String> ingredients) throws InvalidNameException {
         List<Ingredient> listOfIngredients = new ArrayList<>();
 
         for (int i = 0; i < ingredients.size(); i++) {
@@ -61,7 +61,7 @@ public class RecipeService implements IRecipeService {
      * @param ingredient
      * @return
      */
-    private Ingredient splitIngredient(String ingredient) {
+    private Ingredient splitIngredient(String ingredient) throws InvalidNameException {
         //Divide, pela espaço, a String ingredient em duas partes
         List<String> ingredients = Arrays.asList(ingredient.split(" "));
         //Divide a primeira string da lista ingredients em números e letras
