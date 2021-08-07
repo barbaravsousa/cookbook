@@ -1,6 +1,8 @@
 package cookbook.domain;
 import cookbook.exception.InvalidNameException;
 
+import java.util.Objects;
+
 
 public class Ingredient {
     private String name;
@@ -18,8 +20,6 @@ public class Ingredient {
         this.name=name;
         this.measureUnity=measureUnity;
     }
-
-
     /**
      * Method that checks if the ingredient name is valid and only has letters.
      *
@@ -31,5 +31,20 @@ public class Ingredient {
             throw new InvalidNameException("This ingredient doesn't seem correct. Try again!");
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return Objects.equals(name, that.name) && Objects.equals(measureUnity, that.measureUnity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, measureUnity);
+    }
+
+
 }
 
