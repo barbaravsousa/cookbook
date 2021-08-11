@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class IngredientTest {
 
     @Test
-    public void newIngredient_Success() throws InvalidNameException {
+    public void newIngredientSuccess() throws InvalidNameException {
         MeasureUnity measureUnity = new MeasureUnity(20,"g");
         Ingredient ingredient = new Ingredient("Queijo",measureUnity);
         assertNotNull(ingredient);
     }
 
     @Test
-    public void Ingredient_FailureNull(){
+    public void IngredientFailureNull(){
         assertThrows(InvalidNameException.class, () -> new Ingredient(null,null));
     }
 
     @Test
-    public void Ingredient_Failure() throws InvalidNameException {
+    public void IngredientFailure() throws InvalidNameException {
         MeasureUnity measureUnity = new MeasureUnity(20,"g");
         assertThrows(InvalidNameException.class, () -> new Ingredient("Que87237",measureUnity));
     }

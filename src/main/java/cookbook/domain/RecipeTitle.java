@@ -2,6 +2,8 @@ package cookbook.domain;
 
 import cookbook.exception.InvalidNameException;
 
+import java.util.Objects;
+
 public class RecipeTitle {
 
     private String title;
@@ -29,5 +31,21 @@ public class RecipeTitle {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RecipeTitle that = (RecipeTitle) o;
+        return Objects.equals(title, that.title);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
+    }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }

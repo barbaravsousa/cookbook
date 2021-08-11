@@ -24,8 +24,10 @@ public class RecipeService implements IRecipeService {
 
 
     /**
-     * @param newRecipe
-     * @return
+     * Method that creates a new Recipe.
+     *
+     * @param newRecipe - DTO with all the information to create a new recipe
+     * @return a OUT DTO with the title of the recipe that was created
      */
     public NewRecipeOutDTO createNewRecipe(NewRecipeDTO newRecipe) throws InvalidNameException {
         RecipeTitle title = new RecipeTitle(newRecipe.getTitle());
@@ -44,8 +46,10 @@ public class RecipeService implements IRecipeService {
     }
 
     /**
-     * @param ingredients
-     * @return
+     * Method that receives a list of strings with all the ingredients and splits them and returns a list of ingredients.
+     *
+     * @param ingredients - list of strings
+     * @return a list of ingredients
      */
     private List<Ingredient> splitListOfIngredients(List<String> ingredients) throws InvalidNameException {
         List<Ingredient> listOfIngredients = new ArrayList<>();
@@ -58,8 +62,10 @@ public class RecipeService implements IRecipeService {
     }
 
     /**
-     * @param ingredient
-     * @return
+     * Method that receives a string, splits the name and the measure unit and creates a Ingredient with the correct information.
+     *
+     * @param ingredient - string with the name and measure unit
+     * @return an Ingredient
      */
     private Ingredient splitIngredient(String ingredient) throws InvalidNameException {
         //Divide, pela espaço, a String ingredient em duas partes
@@ -70,8 +76,8 @@ public class RecipeService implements IRecipeService {
         if (matcher.find()) {
             String amount = matcher.group(1);
             String measureUnit = matcher.group(2);
-            MeasureUnity measureUnity = new MeasureUnity(Integer.parseInt(amount),measureUnit);
-            return new Ingredient(ingredients.get(1),measureUnity);
+            MeasureUnity measureUnity = new MeasureUnity(Integer.parseInt(amount), measureUnit);
+            return new Ingredient(ingredients.get(1), measureUnity);
         }
         return null;
     }

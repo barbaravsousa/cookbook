@@ -13,4 +13,6 @@ public class NewRecipeInDTO {
     private String difficultyLevel;
     private List<String> ingredientsList;
     private List<String> preparationStepsList;
+
+
 }
