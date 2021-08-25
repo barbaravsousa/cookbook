@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @AllArgsConstructor
+@Getter
 public class Recipe {
-    @Getter
     private final RecipeTitle title;
     private final MealType mealType;
     private final int numberOfPerson;

@@ -23,16 +23,16 @@ public class IngredientJPA {
     @ManyToOne
     RecipeJPA recipeJPA;
 
-    public IngredientJPA(String name, String measureUnit, RecipeJPA recipeJPA) {
+    public IngredientJPA(String name, String measureUnit) {
         this.name = name;
         this.measureUnit = measureUnit;
-        this.recipeJPA = recipeJPA;
+
     }
 
-    public IngredientJPA(Integer id, String name, String measureUnit, RecipeJPA recipeJPA) {
+    public IngredientJPA(Integer id, String name, String measureUnit) {
         this.id = id;
         this.name = name;
         this.measureUnit = measureUnit;
-        this.recipeJPA = recipeJPA;
+
     }
 }

@@ -28,10 +28,7 @@ class RecipeServiceTest {
         ingredients.add("Feijão 20g");
         ingredients.add("Cenoura 159g");
 
-        List<String> steps=new ArrayList<>();
-        steps.add("Junte os feijões e a cenoura");
-        steps.add("No fim junte o bacalhau");
-        steps.add("Sirva com molho");
+        String steps="Junte os feijões e a cenoura.No fim junte o bacalhau e sirva com molho";
 
         NewRecipeDTO newRecipeDTO = new NewRecipeDTO("Massa com bacalhau","MEAL","4","BEGINNER",ingredients,steps);
 

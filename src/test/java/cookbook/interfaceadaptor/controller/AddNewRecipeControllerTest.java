@@ -1,7 +1,6 @@
 package cookbook.interfaceadaptor.controller;
 
 import cookbook.dto.indto.NewRecipeInDTO;
-import cookbook.dto.toservicedto.NewRecipeDTO;
 import cookbook.exception.InvalidNameException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ class AddNewRecipeControllerTest {
 
         List<String> ingredients = new ArrayList<>();
         ingredients.add("Massa 2g");
-        NewRecipeInDTO newRecipeDTO = new NewRecipeInDTO("Massa", "LUNCH", "2", "BEGGINNER", ingredients, "Cozer a massa");
+        NewRecipeInDTO newRecipeDTO = new NewRecipeInDTO("Massa", "MEAL", "2", "BEGGINNER", ingredients, "Cozer a massa");
 
         ResponseEntity<Object> result = controller.addNewRecipe(newRecipeDTO);
         int expected = 200;
@@ -36,7 +35,7 @@ class AddNewRecipeControllerTest {
 
         List<String> ingredients = new ArrayList<>();
         ingredients.add("Massa 2g");
-        NewRecipeInDTO newRecipeDTO = new NewRecipeInDTO("Ma87a", "LUNCH", "2", "BEGGINNER", ingredients, "Cozer a massa");
+        NewRecipeInDTO newRecipeDTO = new NewRecipeInDTO("Ma87a", "MEAL", "2", "BEGGINNER", ingredients, "Cozer a massa");
 
         ResponseEntity<Object> result = controller.addNewRecipe(newRecipeDTO);
         int expected = 400;

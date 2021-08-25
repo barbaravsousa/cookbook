@@ -20,14 +20,13 @@ public class IngredientAssembler {
      * Method that receives a domain object and transforms it into a data model object.
      *
      * @param ingredient, domain object
-     * @param recipeJPA,  data model object
      * @return an IngredientJPA object
      */
-    public static IngredientJPA toData(Ingredient ingredient, RecipeJPA recipeJPA) {
+    public static IngredientJPA toData(Ingredient ingredient) {
         String name = ingredient.getName();
         String measureUnit = ingredient.getMeasureUnity().toString();
 
-        return new IngredientJPA(name, measureUnit, recipeJPA);
+        return new IngredientJPA(name, measureUnit);
     }
 
     /**
@@ -56,6 +55,20 @@ public class IngredientAssembler {
             ingredientList.add(toDomain(ingredientJPA));
         }
         return ingredientList;
+    }
+
+    /**
+     * Method that receives a list with domain objects and transforms them into data model objects.
+     *
+     * @param ingredientList, object domain list
+     * @return a list with data model objects
+     */
+    public static List<IngredientJPA> toData(List<Ingredient> ingredientList) {
+        List<IngredientJPA> ingredientJPAList = new ArrayList<>();
+        for (Ingredient ingredient : ingredientList) {
+            ingredientJPAList.add(toData(ingredient));
+        }
+        return ingredientJPAList;
     }
 
 }
