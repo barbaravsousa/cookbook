@@ -36,9 +36,9 @@ public class RecipeService implements IRecipeService {
         DifficultyLevel difficultyLevel = DifficultyLevel.valueOf(newRecipe.getDifficultyLevel());
         List<String> ingredientsList = newRecipe.getIngredientsList();
         List<Ingredient> ingredientListParsed = splitListOfIngredients(ingredientsList);
-        List<String> preparationStepsList = newRecipe.getPreparationStepsList();
+        String preparationSteps = newRecipe.getPreparationSteps();
 
-        Recipe recipe = new Recipe(title, mealType, numberOfPerson, difficultyLevel, ingredientListParsed, preparationStepsList);
+        Recipe recipe = new Recipe(title, mealType, numberOfPerson, difficultyLevel, ingredientListParsed, preparationSteps);
 
         //É preciso guardar na BASE DE DADOS
 

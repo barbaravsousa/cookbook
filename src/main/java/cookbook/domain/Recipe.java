@@ -9,23 +9,23 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Recipe {
     @Getter
-    private RecipeTitle title;
-    private MealType mealType;
-    private int numberOfPerson;
-    private DifficultyLevel difficultyLevel;
-    private List<Ingredient> ingredientList;
-    private List<String> preparationStepsList;
+    private final RecipeTitle title;
+    private final MealType mealType;
+    private final int numberOfPerson;
+    private final DifficultyLevel difficultyLevel;
+    private final List<Ingredient> ingredientList;
+    private final String preparationSteps;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return numberOfPerson == recipe.numberOfPerson && Objects.equals(title, recipe.title) && mealType == recipe.mealType && difficultyLevel == recipe.difficultyLevel && Objects.equals(ingredientList, recipe.ingredientList) && Objects.equals(preparationStepsList, recipe.preparationStepsList);
+        return numberOfPerson == recipe.numberOfPerson && Objects.equals(title, recipe.title) && mealType == recipe.mealType && difficultyLevel == recipe.difficultyLevel && Objects.equals(ingredientList, recipe.ingredientList) && Objects.equals(preparationSteps, recipe.preparationSteps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, mealType, numberOfPerson, difficultyLevel, ingredientList, preparationStepsList);
+        return Objects.hash(title, mealType, numberOfPerson, difficultyLevel, ingredientList, preparationSteps);
     }
 }

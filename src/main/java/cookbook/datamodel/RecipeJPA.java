@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Recipe")
+@Table(name = "Recipe")
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeJPA {
@@ -20,14 +20,13 @@ public class RecipeJPA {
     @Getter
     String mealType;
     @Getter
-    Integer numberOfPerson;
+    String numberOfPerson;
     @Getter
     String difficultyLevel;
     @Getter
     @OneToMany(mappedBy = "recipeJPA", cascade = CascadeType.ALL)
     List<IngredientJPA> ingredientList;
     @Getter
-    @OneToMany(mappedBy = "recipeJPA", cascade = CascadeType.ALL)
-    List<PreparationStepJPA> preparationList;
+    String preparationSteps;
 
 }

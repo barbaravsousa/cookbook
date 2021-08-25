@@ -9,8 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Table(name="Ingredients")
 public class IngredientJPA {
@@ -24,5 +23,16 @@ public class IngredientJPA {
     @ManyToOne
     RecipeJPA recipeJPA;
 
+    public IngredientJPA(String name, String measureUnit, RecipeJPA recipeJPA) {
+        this.name = name;
+        this.measureUnit = measureUnit;
+        this.recipeJPA = recipeJPA;
+    }
 
+    public IngredientJPA(Integer id, String name, String measureUnit, RecipeJPA recipeJPA) {
+        this.id = id;
+        this.name = name;
+        this.measureUnit = measureUnit;
+        this.recipeJPA = recipeJPA;
+    }
 }

@@ -19,9 +19,8 @@ public class RecipeAssembler {
         MealType mealType = MealType.valueOf(recipeJPA.getMealType());
         int numberOfPerson = Integer.parseInt(recipeJPA.getNumberOfPerson());
         DifficultyLevel difficultyLevel = DifficultyLevel.valueOf(recipeJPA.getDifficultyLevel());
-        List<String> ingredientsList = recipeJPA.getIngredientsList();
-        List<Ingredient> ingredientListParsed = splitListOfIngredients(ingredientsList);
-        List<String> preparationStepsList = recipeJPA.getPreparationStepsList();
+
+        String preparationSteps = recipeJPA.getPreparationSteps();
 
 
     }

@@ -1,9 +1,10 @@
 package cookbook.domain;
 import cookbook.exception.InvalidNameException;
+import lombok.Getter;
 
 import java.util.Objects;
 
-
+@Getter
 public class Ingredient {
     private String name;
     private MeasureUnity measureUnity;
