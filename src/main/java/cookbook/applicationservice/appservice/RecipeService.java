@@ -5,6 +5,7 @@ import cookbook.domain.*;
 import cookbook.dto.outdto.NewRecipeOutDTO;
 import cookbook.dto.toservicedto.NewRecipeDTO;
 import cookbook.exception.InvalidNameException;
+import cookbook.util.Utils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,16 +72,7 @@ public class RecipeService implements IRecipeService {
         //Divide, pela espaço, a String ingredient em duas partes
         List<String> ingredients = Arrays.asList(ingredient.split(" "));
         //Divide a primeira string da lista ingredients em números e letras
-        Pattern pattern = Pattern.compile("(\\d+)(\\w+)");
-        Matcher matcher = pattern.matcher(ingredients.get(0));
-        if (matcher.find()) {
-            String amount = matcher.group(1);
-            String measureUnit = matcher.group(2);
-            MeasureUnity measureUnity = new MeasureUnity(Integer.parseInt(amount), measureUnit);
-            return new Ingredient(ingredients.get(1), measureUnity);
-        }
-        return null;
+        MeasureUnity measureUnity = Utils.splitMeasureUnity(ingredients.get(0));
+        return new Ingredient(ingredients.get(1), measureUnity);
     }
-
-
 }
