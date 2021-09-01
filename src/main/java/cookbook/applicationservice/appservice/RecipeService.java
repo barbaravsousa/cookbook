@@ -2,6 +2,8 @@ package cookbook.applicationservice.appservice;
 
 import cookbook.applicationservice.irepository.IRecipeRepository;
 import cookbook.domain.*;
+import cookbook.domain.id.IngredientID;
+import cookbook.domain.id.RecipeID;
 import cookbook.dto.outdto.NewRecipeOutDTO;
 import cookbook.dto.toservicedto.NewRecipeDTO;
 import cookbook.exception.InvalidNameException;
@@ -13,8 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 @Service
 @AllArgsConstructor
@@ -22,6 +23,10 @@ public class RecipeService implements IRecipeService {
 
     @Autowired
     private final IRecipeRepository recipeRepository;
+    @Autowired
+    private final RecipeIDGenerator recipeIDGenerator;
+    @Autowired
+    private final IngredientIDGenerator ingredientIDGenerator;
 
 
     /**
@@ -31,6 +36,7 @@ public class RecipeService implements IRecipeService {
      * @return a OUT DTO with the title of the recipe that was created
      */
     public NewRecipeOutDTO createNewRecipe(NewRecipeDTO newRecipe) throws InvalidNameException {
+        RecipeID recipeID = recipeIDGenerator.generates();
         RecipeTitle title = new RecipeTitle(newRecipe.getTitle());
         MealType mealType = MealType.valueOf(newRecipe.getMealType());
         int numberOfPerson = Integer.parseInt(newRecipe.getNumberOfPerson());
@@ -39,9 +45,9 @@ public class RecipeService implements IRecipeService {
         List<Ingredient> ingredientListParsed = splitListOfIngredients(ingredientsList);
         String preparationSteps = newRecipe.getPreparationSteps();
 
-        Recipe recipe = new Recipe(title, mealType, numberOfPerson, difficultyLevel, ingredientListParsed, preparationSteps);
+        Recipe recipe = new Recipe(recipeID,title, mealType, numberOfPerson, difficultyLevel, ingredientListParsed, preparationSteps);
 
-        //É preciso guardar na BASE DE DADOS
+        recipeRepository.save(recipe);
 
         return new NewRecipeOutDTO(recipe.getTitle().toString());
     }
@@ -72,7 +78,8 @@ public class RecipeService implements IRecipeService {
         //Divide, pela espaço, a String ingredient em duas partes
         List<String> ingredients = Arrays.asList(ingredient.split(" "));
         //Divide a primeira string da lista ingredients em números e letras
-        MeasureUnity measureUnity = Utils.splitMeasureUnity(ingredients.get(0));
-        return new Ingredient(ingredients.get(1), measureUnity);
+        MeasureUnity measureUnity = Utils.splitMeasureUnity(ingredients.get(1));
+        IngredientID id = ingredientIDGenerator.generates();
+        return new Ingredient(id,ingredients.get(0), measureUnity);
     }
 }

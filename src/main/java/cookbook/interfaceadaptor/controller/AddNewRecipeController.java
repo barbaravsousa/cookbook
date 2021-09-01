@@ -24,14 +24,19 @@ public class AddNewRecipeController {
     private final IRecipeService recipeService;
 
     @PostMapping("/recipes")
-    public ResponseEntity<Object> addNewRecipe(@RequestBody NewRecipeInDTO info) throws InvalidNameException {
+    /**
+     * The information in the request body is transferred to a DTO and a new recipe is created and a DTO with the title
+     * of the recipe is returned. In the case of something being wrong, an error message is returned.
+     *
+     */
+    public ResponseEntity<Object> addNewRecipe(@RequestBody NewRecipeInDTO info) {
         try {
             NewRecipeDTO newRecipeDTO = NewRecipeDTOMapper.toDTO(info);
             NewRecipeOutDTO newRecipe = this.recipeService.createNewRecipe(newRecipeDTO);
             return new ResponseEntity<>(newRecipe, HttpStatus.CREATED);
-        }catch(InvalidNameException exception){
+        } catch (InvalidNameException exception) {
             String errorMessage = exception.getMessage();
-            return new ResponseEntity<>(errorMessage,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
         }
 
     }

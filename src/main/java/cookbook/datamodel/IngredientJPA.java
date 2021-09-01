@@ -4,35 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
-@Table(name="Ingredients")
+@Table(name = "ingredients")
+@NoArgsConstructor
+@AllArgsConstructor
 public class IngredientJPA {
 
     @Id
-    Integer id;
+    @Getter
+    String id;
     @Getter
     String name;
     @Getter
     String measureUnit;
+    @Getter
     @ManyToOne
+    @JoinColumn(name = "recipeID")
     RecipeJPA recipeJPA;
 
-    public IngredientJPA(String name, String measureUnit) {
-        this.name = name;
-        this.measureUnit = measureUnit;
 
-    }
-
-    public IngredientJPA(Integer id, String name, String measureUnit) {
-        this.id = id;
-        this.name = name;
-        this.measureUnit = measureUnit;
-
-    }
 }

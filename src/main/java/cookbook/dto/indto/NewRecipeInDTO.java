@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 public class NewRecipeInDTO {
 
+
     private String title;
     private String mealType;
     private String numberOfPerson;

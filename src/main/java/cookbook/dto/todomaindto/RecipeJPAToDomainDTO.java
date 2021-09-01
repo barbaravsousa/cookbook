@@ -1,10 +1,7 @@
 package cookbook.dto.todomaindto;
 
-
-import cookbook.domain.DifficultyLevel;
-import cookbook.domain.Ingredient;
-import cookbook.domain.MealType;
-import cookbook.domain.RecipeTitle;
+import cookbook.domain.*;
+import cookbook.domain.id.RecipeID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RecipeJPAToDomainDTO {
 
+    private RecipeID recipeID;
     private RecipeTitle title;
     private MealType mealType;
     private int numberOfPerson;
